@@ -1,0 +1,244 @@
+/* 
+   1. variables y estilos GLOBALES (:root)
+   */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e293b;
+    --background-color: #f8fafc;
+    --card-background: #ffffff;
+    --text-color: #334155;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* reseteo basico y modelo de caja */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* 
+   2. encabezado y nvegacion(FLEXBOX)
+    */
+header {
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Flexbox el menu horizontalmente */
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+/* interactividad */
+nav a:hover,
+nav a:focus {
+    color: var(--primary-color);
+}
+
+/* 
+   3. contenido principal/secciones
+    */
+main section {
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.3rem;
+}
+
+#sobre-mi img {
+    border-radius: 50%;
+    margin-top: 1rem;
+    border: 3px solid var(--primary-color);
+}
+
+/* 
+   4. CSS GRID
+    */
+#proyectos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+#proyectos h2 {
+    grid-column: 1 / -1; /* El título ocupa todo el ancho de la cuadrícula */
+}
+
+article {
+    background-color: var(--background-color);
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.2rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+article:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 
+   5. estilos para formulario de contacto
+    */
+form div {
+    display: flex;
+    flex-direction: column;
+}
+
+input, textarea {
+    padding: 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+button[type="submit"] {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+    background-color: #1d4ed8;
+}
+
+/* 
+   6. meida queries
+    */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+}
+/*estilo para modo oscuro arreglo3*/
+
+body.dark-mode {
+    --background-color: #0f172a;
+    --card-background: #1e293b;
+    --text-color: #f8fafc;
+    --secondary-color: #3b82f6;
+}
+
+body.dark-mode article {
+    border-color: #334155;
+}
+/* ==========================================
+   ESTILOS PARA MENÚ HAMBURGUESA Y MÓVIL
+   ========================================== */
+
+/* Por defecto en pantallas pequeñas (móviles): 1 sola columna */
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+/* Ocultar el botón hamburguesa en pantallas grandes */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: inherit;
+}
+
+/* Sección de proyectos en móvil: 1 sola columna */
+#proyectos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ==========================================
+   MEDIA QUERY: PANTALLAS GRANDES (TABLET/DESKTOP)
+   ========================================== */
+@media (min-width: 768px) {
+    /* Pasa de 1 columna a varias columnas en proyectos */
+    #proyectos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    /* En pantallas grandes la lista de navegación se muestra horizontal */
+    #nav-links {
+        display: flex !important;
+        flex-direction: row;
+        gap: 15px;
+        list-style: none;
+    }
+}
+
+/* Estilos de menú colapsable para pantallas pequeñas (< 768px) */
+@media (max-width: 767px) {
+    .hamburger {
+        display: block; /* Muestra el botón ☰ en móviles */
+    }
+
+    #nav-links {
+        display: none; /* Oculta la lista por defecto en móvil */
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        list-style: none;
+        padding: 0;
+    }
+
+    /* Clase activa al hacer clic en la hamburguesa */
+    #nav-links.active {
+        display: flex; !important;
+    }
+}
