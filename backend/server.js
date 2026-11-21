@@ -8,13 +8,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Configuración de la conexión a PostgreSQL
+const { Pool } = require('pg');
+
+// Conexión dinámica: usa Render en la nube o localhost si estás en tu PC
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'portafolio_db',
-    password: 'MOGa8149', // CONTRASEÑA EN POSTGRESQL
-    port: 5432,
+    connectionString: process.env.DATABASE_URL || 'postgres://postgres:MOGa8149@localhost:5432/portafolio_db',
+    ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
 });
 
 // Endpoint GET: Obtener la lista de proyectos desde PostgreSQL
