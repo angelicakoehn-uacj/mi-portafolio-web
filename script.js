@@ -74,7 +74,7 @@ async function cargarProyectos() {
     if (!contenedorProyectos) return;
 
     try {
-        const respuesta = await fetch('http://localhost:3000/api/proyectos');
+        const respuesta = await fetch('https://backend-portafolio-qtuu.onrender.com/api/proyectos');
         const proyectos = await respuesta.json();
 
         // Mantener el título h2 y limpiar elementos anteriores
