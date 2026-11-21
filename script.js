@@ -47,7 +47,7 @@ if (formulario) {
 
         try {
             // Enviar petición HTTP POST al backend Node.js
-            const respuesta = await fetch('http://localhost:3000/api/contacto', {
+            const respuesta = await fetch('https://backend-portafolio-qtuu.onrender.com/api/contacto', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(datos)
@@ -61,7 +61,7 @@ if (formulario) {
             }
         } catch (error) {
             console.error('Error de conexión:', error);
-            alert('No se pudo conectar con el servidor backend en http://localhost:3000.');
+            alert('No se pudo conectar con el servidor backend en https://backend-portafolio-qtuu.onrender.com.');
         }
     });
 }
