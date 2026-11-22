@@ -98,7 +98,7 @@ async function cargarProyectos() {
 }
 
 // Cargar proyectos cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', cargarProyectos);
+//document.addEventListener('DOMContentLoaded', cargarProyectos);
 // ==========================================
 // MENÚ HAMBURGUESA (MÓVIL)
 // ==========================================
