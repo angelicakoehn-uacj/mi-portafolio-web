@@ -3,7 +3,7 @@
 // ==========================================
 const btnTheme = document.getElementById('btn-theme');
 
-// Comprobar si el usuario ya tenía el modo oscuro guardado previamente
+// Comprobar si ya se tenía el modo oscuro guardado previamente
 if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark-mode');
     if (btnTheme) btnTheme.textContent = '☀️ Modo Claro';

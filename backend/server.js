@@ -4,18 +4,18 @@ const { Pool } = require('pg');
 
 const app = express();
 
-// Middlewares para procesar JSON y permitir solicitudes del Frontend
+// procesar JSON y permitir solicitudes del Frontend
 app.use(cors());
 app.use(express.json());
 
 
-// Conexión dinámica: usa Render en la nube o localhost si estás en tu PC
+// Render en la nube o localhost en pc
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL || 'postgres://postgres:MOGa8149@localhost:5432/portafolio_db',
     ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
 });
 
-// Crear la tabla "contactos" automáticamente en PostgreSQL si no existe
+// Crear la tabla "contactos" 
 pool.query(`
     CREATE TABLE IF NOT EXISTS contactos (
         id SERIAL PRIMARY KEY,
