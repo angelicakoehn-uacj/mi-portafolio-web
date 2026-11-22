@@ -15,6 +15,20 @@ const pool = new Pool({
     ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
 });
 
+// Crear la tabla "contactos" automáticamente en PostgreSQL si no existe
+pool.query(`
+    CREATE TABLE IF NOT EXISTS contactos (
+        id SERIAL PRIMARY KEY,
+        nombre VARCHAR(100) NOT NULL,
+        email VARCHAR(100) NOT NULL,
+        mensaje TEXT NOT NULL,
+        fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+`)
+.then(() => console.log('✅ Tabla "contactos" lista en PostgreSQL'))
+.catch(err => console.error('❌ Error al verificar/crear la tabla:', err));
+
+
 // Endpoint GET: Obtener la lista de proyectos desde PostgreSQL
 app.get('/api/proyectos', async (req, res) => {
     try {
@@ -25,6 +39,7 @@ app.get('/api/proyectos', async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
+
 
 // Endpoint POST: Guardar mensajes del formulario de contacto en PostgreSQL
 app.post('/api/contacto', async (req, res) => {
