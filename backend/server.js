@@ -8,7 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const { Pool } = require('pg');
 
 // Conexión dinámica: usa Render en la nube o localhost si estás en tu PC
 const pool = new Pool({
